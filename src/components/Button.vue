@@ -8,7 +8,6 @@
     props: {
       value: String,
       class: String,
-      // method: { type: Function }
     },
     methods: {
       handleClick (e) {
