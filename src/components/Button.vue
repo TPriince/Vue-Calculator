@@ -1,5 +1,5 @@
 <template>
-  <button @click="handleClick" :class="class">{{ value }}</button>
+  <button @click="handleClick">{{ value }}</button>
 </template>
 
 <script>
@@ -7,7 +7,6 @@
     name: "Button",
     props: {
       value: String,
-      class: String,
     },
     methods: {
       handleClick(e) {

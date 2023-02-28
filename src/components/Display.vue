@@ -1,5 +1,5 @@
 <template>
-  <div :class="class">{{ value }}</div>
+  <div>{{ value }}</div>
 </template>
 
 <script>
@@ -7,7 +7,6 @@ export default {
   name: "Display",
   props: {
     value: String,
-    class: String
   }
 }
 </script>
