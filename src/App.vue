@@ -2,25 +2,25 @@
   <div class="container">
     <Display class="display" :value="num"/>
     
-    <Button class="button clear" value="C" :method="handleClear" />
-    <Button class="button" value="%" :method="handlePercentage" />
-    <Button class="button op" value="/" :method="handleClick" />
-    <Button class="button" value="7" :method="handleClick" />
-    <Button class="button" value="8" :method="handleClick" />
-    <Button class="button" value="9" :method="handleClick" />
-    <Button class="button op" value="*" :method="handleClick" />
-    <Button class="button" value="4" :method="handleClick" />
-    <Button class="button" value="5" :method="handleClick" />
-    <Button class="button" value="6" :method="handleClick" />
-    <Button class="button op" value="-" :method="handleClick" />
-    <Button class="button" value="1" :method="handleClick" />
-    <Button class="button" value="2" :method="handleClick" />
-    <Button class="button" value="3" :method="handleClick" />
-    <Button class="button op" value="+" :method="handleClick" />
-    <Button class="button" value="0" :method="handleClick" />
-    <Button class="button" value="." :method="handleClick" />
-    <Button class="button" value="del" :method="handleDelete" />
-    <Button class="button op equalto" value="=" :method="handleResult" />
+    <Button class="button clear" value="C" @btn-click="handleClear" />
+    <Button class="button" value="%" @btn-click="handlePercentage" />
+    <Button class="button op" value="/" @btn-click="handleClick" />
+    <Button class="button" value="7" @btn-click="handleClick" />
+    <Button class="button" value="8" @btn-click="handleClick" />
+    <Button class="button" value="9" @btn-click="handleClick" />
+    <Button class="button op" value="*" @btn-click="handleClick" />
+    <Button class="button" value="4" @btn-click="handleClick" />
+    <Button class="button" value="5" @btn-click="handleClick" />
+    <Button class="button" value="6" @btn-click="handleClick" />
+    <Button class="button op" value="-" @btn-click="handleClick" />
+    <Button class="button" value="1" @btn-click="handleClick" />
+    <Button class="button" value="2" @btn-click="handleClick" />
+    <Button class="button" value="3" @btn-click="handleClick" />
+    <Button class="button op" value="+" @btn-click="handleClick" />
+    <Button class="button" value="0" @btn-click="handleClick" />
+    <Button class="button" value="." @btn-click="handleClick" />
+    <Button class="button" value="del" @btn-click="handleDelete" />
+    <Button class="button op equalto" value="=" @btn-click="handleResult" />
   </div>
     
 </template>
@@ -36,28 +36,36 @@ export default {
   },
   data () {
     return {
-      num: ""
+      num: "",
+      operators: ["+", "-", "*", "/", "."]
     }
   },
   methods: {
-    handleClick(e) {
+    handleClick(val) {
+      if (this.num.startsWith("0")) {
+        this.num = this.num.slice(1);
+      }
       if (this.num.length > 14 ) {
         alert("Can't enter more than 15 digits.");
       } else {
-        this.num = this.num + e.target.textContent;
+        this.num = this.num + val;
       }
   },
-    handleClear(e) {
+    handleClear() {
       this.num = "";
   },
     handleDelete() {
       this.num = this.num.slice(0, this.num.length - 1);
   },
     handlePercentage() {
-      this.num = (eval(this.num) / 100).toString();
+      if (this.num.length > 0) {
+        this.num = (eval(this.num) / 100).toString();
+      }
   },
     handleResult() {
-      this.num = eval(this.num).toString();
+      if (this.num.length > 0 && !this.operators.includes(this.num) && !this.num.startsWith("*") && !this.num.startsWith("/")) {
+        this.num = eval(this.num).toString();
+      }
     }
 }
 }

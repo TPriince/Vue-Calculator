@@ -1,5 +1,5 @@
 <template>
-  <button @click="method" :class="class">{{ value }}</button>
+  <button @click="handleClick" :class="class">{{ value }}</button>
 </template>
 
 <script>
@@ -8,8 +8,13 @@
     props: {
       value: String,
       class: String,
-      method: { type: Function }
+      // method: { type: Function }
     },
+    methods: {
+      handleClick (e) {
+        this.$emit('btn-click', e.target.textContent)
+      }
+    }
   }
 </script>
 
