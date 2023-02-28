@@ -10,7 +10,7 @@
       class: String,
     },
     methods: {
-      handleClick (e) {
+      handleClick(e) {
         this.$emit('btn-click', e.target.textContent)
       }
     }
